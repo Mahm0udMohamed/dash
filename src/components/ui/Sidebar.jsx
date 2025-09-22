@@ -283,42 +283,40 @@ const Sidebar = ({ isCollapsed = false, onToggle, className = "" }) => {
 
       {/* Mobile Bottom Navigation */}
       <div
-        className="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-card border-t border-border safe-area-pb"
+        className="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-sm border-t border-gray-200 shadow-lg"
         dir="rtl"
       >
-        <div className="flex items-center justify-around px-2 py-3">
+        <div className="flex items-center justify-around px-1 py-2">
           {quickViews?.slice(0, 4)?.map((item) => (
             <button
               key={item?.id}
               onClick={() => handleViewClick(item?.id)}
-              className={`flex flex-col items-center space-y-1 px-3 py-2 rounded-md transition-colors min-w-0 ${
+              className={`flex flex-col items-center space-y-0.5 px-2 py-1.5 rounded-lg transition-all duration-200 min-w-0 ${
                 activeView === item?.id
-                  ? "text-primary"
-                  : "text-muted-foreground hover:text-foreground"
+                  ? "text-blue-600 bg-blue-50"
+                  : "text-gray-600 hover:text-gray-900 hover:bg-gray-50"
               }`}
             >
               <div className="relative">
-                <Icon name={item?.icon} size={20} />
+                <Icon name={item?.icon} size={18} />
                 {item?.count && (
                   <span
-                    className={`absolute -top-2 -left-2 text-xs w-5 h-5 flex items-center justify-center rounded-full ${
-                      item?.urgent
-                        ? "bg-warning text-warning-foreground"
-                        : "bg-primary text-primary-foreground"
+                    className={`absolute -top-1.5 -left-1.5 text-xs w-4 h-4 flex items-center justify-center rounded-full text-white font-medium ${
+                      item?.urgent ? "bg-orange-500" : "bg-blue-500"
                     }`}
                   >
                     {item?.count}
                   </span>
                 )}
               </div>
-              <span className="text-xs font-medium truncate max-w-16">
+              <span className="text-xs font-medium truncate max-w-14 leading-tight">
                 {item?.name?.split(" ")?.[0]}
               </span>
             </button>
           ))}
         </div>
         {/* Safe area padding for devices with home indicator */}
-        <div className="h-safe-area-inset-bottom"></div>
+        <div className="h-safe-area-inset-bottom bg-white/95"></div>
       </div>
     </>
   );
